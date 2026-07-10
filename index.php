@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order'])) {
   html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
   body{
     margin:0; background:var(--bg); color:var(--ink); font-family:var(--sans);
-    -webkit-font-smoothing:antialiased; overflow-x:hidden;
+    -webkit-font-smoothing:antialiased; overflow-x:hidden; overflow-wrap:break-word;
   }
   img{ max-width:100%; display:block; }
   a{ color:inherit; }
@@ -80,7 +80,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order'])) {
   /* ---------- Urgency top bar ---------- */
   .urgency-bar{
     background:var(--ink); color:#fff; text-align:center; font-size:12.5px; font-weight:600;
-    padding:9px 12px; display:flex; align-items:center; justify-content:center; gap:8px;
+    padding:9px 12px; display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:6px 8px;
   }
   .urgency-bar b{ color:var(--accent); font-variant-numeric:tabular-nums; }
 
@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order'])) {
   }
 
   .price-block{
-    display:flex; align-items:flex-end; justify-content:space-between; gap:12px;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
     margin-top:18px; padding:16px 18px; background:var(--bg-soft); border-radius:var(--radius-md);
   }
   .price-nums{ display:flex; align-items:baseline; gap:10px; }
@@ -202,13 +202,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order'])) {
 
   /* ---------- Comparison table ---------- */
   .compare{ margin-top:22px; border-radius:var(--radius-lg); overflow:hidden; border:1px solid var(--line); }
-  .compare-row{ display:grid; grid-template-columns:1.4fr 1fr 1fr; }
+  .compare-row{ display:grid; grid-template-columns:1.4fr 1fr 1fr; align-items:center; }
   .compare-row > div{ padding:13px 10px; font-size:12.5px; line-height:1.4; }
   .compare-row.head{ background:var(--ink); color:#fff; font-weight:800; font-size:12px; }
+  .compare-row.head > div:not(:first-child){ text-align:center; }
   .compare-row.head .us{ color:var(--accent); }
   .compare-row:not(.head){ border-top:1px solid var(--line); }
   .compare-row:not(.head) > div:first-child{ font-weight:600; color:var(--ink); }
-  .compare-row .us-col{ background:#fdf3f1; text-align:center; font-weight:700; color:var(--accent-dark); }
+  .compare-row .us-col{ background:#fdf3f1; text-align:center; font-weight:700; color:var(--accent-dark); align-self:stretch; display:flex; align-items:center; justify-content:center; }
   .compare-row:not(.head) .other-col{ text-align:center; color:var(--ink-soft); }
 
   /* ---------- Order ---------- */
@@ -222,6 +223,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order'])) {
 
   .field-label{ font-size:11px; text-transform:uppercase; letter-spacing:0.09em; color:var(--ink-soft); font-weight:800; margin:16px 0 9px; }
   .size-grid{ display:grid; grid-template-columns:1fr 1fr; gap:9px; }
+  .size-grid.single-option{ grid-template-columns:1fr; }
   .size-opt, .color-opt{
     border:1.5px solid var(--line); border-radius:var(--radius-sm); padding:12px 10px; text-align:center;
     font-size:13px; color:var(--ink); background:#fff; font-weight:600;
@@ -284,7 +286,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order'])) {
     flex:none; width:76%; scroll-snap-align:start; background:#fff; border:1px solid var(--line);
     border-radius:var(--radius-lg); padding:18px;
   }
-  .review-stars{ color:var(--accent-dark); font-size:13px; letter-spacing:2px; }
+  .review-stars{ display:flex; align-items:center; color:var(--accent-dark); font-size:13px; letter-spacing:2px; }
   .review-card p{ font-size:13.5px; line-height:1.55; color:var(--ink); margin-top:10px; }
   .review-who{ display:flex; align-items:center; gap:10px; margin-top:14px; }
   .review-avatar{
@@ -485,7 +487,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['order'])) {
       </div>
 
       <div class="field-label">Колір</div>
-      <div class="size-grid" id="colorGrid">
+      <div class="size-grid single-option" id="colorGrid">
         <button type="button" class="color-opt active" data-color="Чорний в горошок"><span class="swatch"></span> Чорний в горошок</button>
       </div>
 
